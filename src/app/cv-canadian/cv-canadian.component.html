@@ -1,0 +1,62 @@
+<div class="cv-container">
+  <input type="submit" (click)="home()" value="home" style="align-self: flex-end;">
+  <div class="CV">
+    <header>
+      <div class="header-content">
+        <h1>{{cv.name}} </h1><h1> {{cv.prenom}}</h1>
+        <p>City: {{cv.address}} | Phone: {{cv.phone}} | Email: {{cv.email}} </p>
+      </div>
+    </header>
+  
+    <!-- Summary -->
+    <section class="summary">
+      <h2>Professional Summary</h2>
+      <p>
+        {{cv.profil}}
+      </p>
+    </section>
+  
+    <!-- Key Skills -->
+    <section class="skills">
+      <h2>Key Skills</h2>
+      <ul>
+        <p>
+          {{cv.competence}}
+        </p>
+      </ul>
+    </section>
+  
+    <!-- Professional Experience -->
+    <section class="experience">
+      <h2>Professional Experience</h2>
+      <div class="experience-item">
+        <h3>Job Title</h3>
+        <p><strong>{{cv.poste}}</strong> | {{cv.date_1}} – {{cv.date_2}}</p>
+        <ul>
+          <p>
+            {{cv.description}}
+          </p>
+        </ul>
+      </div>
+    </section>
+  
+    <!-- Education -->
+    <section class="education">
+      <h2>Education</h2>
+      <div class="education-item">
+        <h3>Degree / Diploma</h3>
+        <p><strong>{{cv.diplome}}</strong>  | {{cv.date_dip}}</p>
+      </div>
+    </section>
+  
+    <!-- Additional Information -->
+    <section class="additional-info">
+      <h2>Additional Information</h2>
+      <p>
+        {{cv.languages}}
+      </p>
+    </section>
+  </div>
+    <input type="submit" value="upload" style="align-self: flex-start;">
+</div>
+  

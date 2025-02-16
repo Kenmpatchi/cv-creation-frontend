@@ -1,0 +1,104 @@
+<div class="container">
+    <h1>CV List</h1>
+    <button (click)="addNewCV()">Add New CV
+      <img src="/add.png" alt="add" style="height: 20px;width: 20px;">
+    </button>
+    <button (click)="logout()">Logout
+      <img src="/logout.png" alt="veiw" style="height: 20px;width: 20px;">
+    </button>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Types</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cv of cvs">
+          <td>{{ cv.name }}</td>
+          <td>{{cv.types}}</td>
+          <td>{{cv.email}}</td>
+          <td>{{cv.phone}}</td>
+          <td>
+            <button (click)="veiw(cv._id,cv.types)">
+              <img src="/images.jpg" alt="veiw" style="height: 20px;width: 20px;">
+            </button>
+            <button (click)="editCV(cv._id)">
+              <img src="/download.jpg" alt="Edit" style="height: 20px;width: 20px;">
+            </button>
+            <button (click)="deleteCV(cv._id)">
+              <img  src="/download.png" alt="Delete" style="height: 20px;width: 20px;">
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  
+  <form id="cvForm" *ngFor="let cv of cvs" class="hidden model">
+    <button class="btn close" style="align-self: flex-end;" (click)="close()">&times;</button>
+    <div *ngIf="!bnext">
+
+      <label for="cv">select your type of cv:</label>
+    <select name="cv" id="cv" [(ngModel)]="cv.types">
+        <option value="canadian">canadian</option>
+        <option value="europeinne" selected>europienne</option>
+    </select><br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="cv.name" required> <br>
+
+    <label for="name">Prenom:</label>
+    <input type="text" id="prenom" name="prenom" [(ngModel)]="cv.prenom" required> <br>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="cv.email" required> <br>
+      
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" [(ngModel)]="cv.phone" required> <br>
+      
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" [(ngModel)]="cv.address" required> <br>
+      
+      <label for="summary">profil personnelle:</label>
+      <textarea placeholder="Une brève description de vous-même, de vos compétences et de vos objectifs
+      professionnels." id="profil" name="profil" rows="4" [(ngModel)]="cv.profil" required></textarea> <br>
+                             
+    </div>
+    <div *ngIf="bnext">
+
+      <label for="job-title">poste occupe:</label>
+      <input type="text" id="entreprise" name="entreprise" [(ngModel)]="cv.poste" placeholder="entreprise occupe" required> <br>
+      <label for="date_1">date arrive:</label>
+      <input type="month" name="date_1" [(ngModel)]="cv.date_1" required> <br>
+      <label for="date_2">date sortie:</label>
+      <input type="month" name="date_2" [(ngModel)]="cv.date_2" required> <br>
+
+      <label for="diplome">diplome obtenu:</label>
+      <input type="text" id="diplome" name="diplome" [(ngModel)]="cv.diplome" required> <br>
+      <label for="date-obtention">date obtien diplome:</label>
+      <input type="number" name="date_diplome" min="1900" max="2025" [(ngModel)]="cv.date_dip" required><br>
+      <textarea name="description" [(ngModel)]="cv.description" placeholder="Description des responsabilités et des réalisations."></textarea><br>
+
+      <label for="compétences">compétences:</label>
+      <textarea name="compétences" id="compétences" [(ngModel)]="cv.competence"></textarea><br>
+      <div *ngIf="cv.types=='europeinne'">
+      <label for="languages">languages:</label>
+    </div>
+      <div *ngIf="cv.types=='canadian'">
+          <label for="Additional Information">Additional Information:</label>
+      </div>
+      <textarea name="languages" id="languages" [(ngModel)]="cv.languages"></textarea>
+    </div>
+    <button class="btn hidden back" value="back" (click)="back()" style="align-self: self-start;">
+    </button>
+    <button class="btn next" value="next" style="align-self: self-end;" (click)="next()">
+    </button>
+
+      <button type="submit" class="btn" (click)="edit(cv._id,cv)" >edit</button>
+    </form>
+    <div class="overlay hidden" (click)="close()"></div>
+  </div>
+  

@@ -1,0 +1,174 @@
+<h1>Create Your CV</h1>
+<div class="container">
+
+    <form id="cvForm" >
+    <div *ngIf="!bnext">
+
+      <label for="cv">select your type of cv:</label>
+    <select name="cv" id="cv" [(ngModel)]="types">
+        <option value="canadian">canadian</option>
+        <option value="europeinne" selected>european</option>
+    </select><br>
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" [(ngModel)]="cv.name" required> <br>
+
+    <label for="name">Prenom:</label><br>
+    <input type="text" id="prenom" name="prenom" [(ngModel)]="cv.prenom" required> <br>
+      
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" [(ngModel)]="cv.email" required> <br>
+      
+      <label for="phone">Phone:</label><br>
+      <input type="telz" id="phone" name="phone" [(ngModel)]="cv.phone" required> <br>
+      
+      <label for="address">Address:</label><br>
+      <input type="text" id="address" name="address" [(ngModel)]="cv.address" required> <br>
+      
+      <label for="summary">profil personnelle:</label><br>
+      <textarea placeholder="Une brève description de vous-même, de vos compétences et de vos objectifs
+      professionnels." id="profil" name="profil" rows="4" [(ngModel)]="cv.profil" required></textarea> <br>
+                             
+    </div>
+    <div *ngIf="bnext">
+
+      <label for="job-title">poste occupe:</label><br>
+      <input type="text" id="entreprise" name="entreprise" [(ngModel)]="cv.poste" placeholder="entreprise occupe" required> <br>
+      <label for="date_1">date arrive:</label><br>
+      <input type="month" name="date_1" [(ngModel)]="date_1" required> <br>
+      <label for="date_2">date sortie:</label><br>
+      <input type="month" name="date_2" [(ngModel)]="date_2" required> <br>
+
+      <label for="diplome">diplome obtenu:</label><br>
+      <input type="text" id="diplome" name="diplome" [(ngModel)]="cv.diplome" required> <br>
+      <label for="date-obtention">date obtien diplome:</label><br>
+      <input type="number" name="date_diplome" min="1900" max="2025" [(ngModel)]="cv.date_dip" required><br>
+      <textarea name="description" [(ngModel)]="cv.description" placeholder="Description des responsabilités et des réalisations."></textarea><br>
+
+      <label for="compétences">compétences:</label><br>
+      <textarea name="compétences" id="compétences" [(ngModel)]="cv.competence"></textarea><br>
+      <div *ngIf="types=='europeinne'">
+      <label for="languages">languages:</label><br>
+    </div>
+      <div *ngIf="types=='canadian'">
+          <label for="Additional Information">Additional Information:</label>
+      </div>
+      <textarea name="languages" id="languages" [(ngModel)]="cv.languages"></textarea><br>
+    </div>
+      <button class="btn hidden back" value="back" (click)="back()">
+
+      </button>
+      <button class="btn next" value="next" style="align-self: flex-end;" (click)="next()">
+
+      </button>
+      <button type="submit" class="btn" style="align-self: center;" (click)="save(cv,cv._id)">submit</button>
+    </form>
+    <div [ngSwitch]="types" class="container-cv">
+    <div  *ngSwitchCase="'europeinne'">
+      <div class="cv-container">
+        <!-- En-tête -->
+        <header>
+          <div class="header-content">
+            <h1><p>{{cv.name}}</p><p>{{cv.prenom}}</p></h1>
+            <p>Address:{{cv.address}} | Téléphone:{{cv.phone}} | Email:{{cv.email}} | Site Web</p>
+          </div>
+        </header>
+      
+        <!-- Profil -->
+        <section class="profile">
+          <h2>Profil Personnel</h2>
+          <p>
+            {{cv.profil}}
+          </p>
+        </section>
+      
+        <!-- Expérience professionnelle -->
+        <section class="experience">
+          <h2>Expérience Professionnelle</h2>
+          <div class="experience-item">
+            <h3>Poste occupé</h3>
+            <p><strong>{{cv.poste}}</strong> | {{date_1}} - {{date_2}}</p>
+            <p>{{cv.description}}</p>
+          </div>
+        </section>
+      
+        <!-- Formation -->
+        <section class="education">
+          <h2>Formation</h2>
+          <div class="education-item">
+            <h3>{{cv.diplome}}</h3>
+            <p><strong>Établissement</strong> | {{cv.date_dip}}</p>
+          </div>
+        </section>
+      
+        <!-- Compétences -->
+        <section class="skills">
+          <h2>Compétences</h2>
+          <p>{{cv.competence}}</p>
+        </section>
+      
+        <!-- Langues -->
+        <section class="languages">
+          <h2>Langues</h2>
+          <p >{{cv.languages}}</p>
+        </section>
+      </div>
+      
+    </div>
+    <div *ngSwitchCase="'canadian'">
+      <div class="cv-container">
+        <!-- Header -->
+        <header>
+          <div class="header-content">
+            <h1><p>{{cv.name}}</p><p>{{cv.prenom}}</p></h1>
+            <p>Address:{{cv.address}} | Téléphone:{{cv.phone}} | Email:{{cv.email}} | Site Web</p>
+          </div>
+        </header>
+      
+        <!-- Summary -->
+        <section class="summary">
+          <h2>Professional Summary</h2>
+          <p>
+            {{cv.profil}}
+          </p>
+        </section>
+      
+        <!-- Key Skills -->
+        <section class="skills">
+          <h2>Key Skills</h2>
+          <p>{{cv.competence}}</p>
+        </section>
+      
+        <!-- Professional Experience -->
+        <section class="experience">
+          <h2>Professional Experience</h2>
+          <div class="experience-item">
+            <div class="experience-item">
+              <h3>Job Title</h3>
+              <p><strong>{{cv.poste}}</strong> | {{date_1}} - {{date_2}}</p>
+              <p>{{cv.description}}</p>
+            </div>
+            
+          </div>
+        </section>
+      
+        <!-- Education -->
+        <section class="education">
+          <h2>Education</h2>
+          
+          <div class="education-item">
+            <h3>Degree / Diploma</h3>
+            <h3>{{cv.diplome}}</h3>
+            <p><strong>Établissement</strong> | {{cv.date_dip}}</p>
+          </div>
+        </section>
+      
+        <!-- Additional Information -->
+        <section class="additional-info">
+          <h2>Additional Information</h2>
+          <p >{{cv.languages}}</p>
+        </section>
+      </div>
+    
+    </div> 
+    </div>
+</div>

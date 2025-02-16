@@ -1,0 +1,46 @@
+<div class="navbar">
+  <div class="navbar-container">
+    <div class="logo">CVthèque</div>
+    <ul class="nav-links">
+      <li><a href="#">home</a></li>
+    </ul>
+  </div>
+</div><br><br><br>
+<div class="login-container">
+  <div class="login-left">
+    <img src="/background_text.png" alt="creation CV" class="illustration" />
+    <h2>Create your professional CV easily</h2>
+    <p>Manage your applications and highlight your skills in just a few clicks.</p>
+  </div>
+
+  <div class="login-right">
+    <div class="login-card">
+      <h2>Connexion</h2>
+      <form>
+        <div class="form-group">
+          <input
+            type="email"
+            placeholder="Adresse email"
+            [(ngModel)]="email"
+            name="email"
+            required
+          />
+        </div>
+        <div *ngIf="isSubmitted">email invalid</div>
+        <div class="form-group">
+          <input
+            type="password"
+            placeholder="password"
+            [(ngModel)]="pass"
+            name="password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn" (click)="save()">sign in</button>
+        <p class="register-link">
+          You don't have an account ? <a routerLink="/register">sign up</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

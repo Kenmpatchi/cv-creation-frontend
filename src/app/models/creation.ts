@@ -1,0 +1,19 @@
+export class Cv{
+    _id?:Object
+    user_id?:Object
+    types?:string
+    name?:string
+    prenom?:string
+    email?:string
+    phone?:number
+    address?:string
+    profil?:string
+    poste?:string
+    date_1?:String
+    date_2?:String
+    description?:string
+    diplome?:string
+    date_dip?:number
+    competence?:string
+    languages?:string
+}
