@@ -16,11 +16,11 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
   router=inject(Router);
-  name?:string
-  lastname?:string
+  username?:string
   email:string=''
-  pass:string=''
+  password:string=''
   valpass?:string
+  phone?:Number
   id?:Object
   isSubmitted:boolean=false
   user:User=new User()
@@ -29,24 +29,21 @@ export class RegisterComponent {
   save(){
     this.isSubmitted=true
     console.log(this.isSubmitted)
-    if(this.pass===this.valpass && this.pass.length>4 && this.email.includes('.com')){
+    if(this.password===this.valpass && this.password.length>4 && this.email.includes('.com')){
       this.user.email=this.email
-      this.user.name=this.name
-      this.user.lastname=this.lastname
-      this.user.pass=this.pass
+      this.user.username=this.username
+      this.user.password=this.password
+      this.user.phone=this.phone
       this.User.adduser(this.user).subscribe(
         res=>{
+        this.User.check(this.user).subscribe(
+          res=>{
           localStorage.setItem("token",res.mytoken)
-          this.router.navigate(["/crud/",res.id])
-        },
-        err=>{
-          console.log(err)
-        }
-      )}
-    else{
-      console.log('invalid')
+          this.router.navigate(["/crud/",res.id])}
+        )}
+      )
+        
+      }
     }
-  }
-  
-  }
+}
 

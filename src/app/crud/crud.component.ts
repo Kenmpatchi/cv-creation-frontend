@@ -50,8 +50,14 @@ export class CrudComponent implements OnInit{
     div.className="overlay"
   }
   edit(id:any,cv:Cv){
-    console.log(typeof(cv.date_1))
-    this.crud.update(cv,id).subscribe()
+    this.crud.update(cv,id).subscribe(
+      res=>{
+        console.log(res.message)
+      },
+      err=>{
+        console.log(err.message)
+      }
+    )
     const form=document.querySelector('form') as HTMLElement
     form.className='model hidden';
     const div=document.querySelector('.overlay') as HTMLElement
@@ -74,7 +80,14 @@ export class CrudComponent implements OnInit{
   }
 
   deleteCV(id: any) {
-    this.crud.delete(id).subscribe()
+    this.crud.delete(id).subscribe(
+      res=>{
+        console.log(res.message);
+      },
+      err=>{
+        console.log(err.message)
+      }
+    )
     this.cvs = this.cvs.filter(item=> item._id !== id);
   }
 

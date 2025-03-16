@@ -22,18 +22,9 @@
         <div class="form-group">
           <input
             type="text"
-            placeholder="Name"
-            [(ngModel)]="name"
-            name="name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            placeholder="Last Name"
-            [(ngModel)]="lastname"
-            name="lastname"
+            placeholder="User_Name"
+            [(ngModel)]="username"
+            name="username"
             required
           />
         </div>
@@ -45,17 +36,27 @@
             name="email"
             required
           />
-          <div *ngIf="isSubmitted && !email.includes('.com')">invalid email</div>
         </div>
+          <div class="form-group">
+          <input
+          type="number"
+          placeholder="phone number"
+          [(ngModel)]="phone"
+          name="phone"
+          required
+        />
+      </div>
+          <div *ngIf="isSubmitted && !email.includes('.com')">invalid email</div>
+        
         <div class="form-group">
           <input
             type="password"
             placeholder="password"
-            [(ngModel)]="pass"
+            [(ngModel)]="password"
             name="password"
             required
           />
-          <div *ngIf="isSubmitted && pass.length<4">need atleast 5 charactere</div>
+          <div *ngIf="isSubmitted && password.length<4">need atleast 5 charactere</div>
         </div>
         <div class="form-group">
           <input
@@ -65,7 +66,7 @@
             name="valpass"
             required
           />
-          <div *ngIf="isSubmitted && pass!=valpass">password invalid</div>
+          <div *ngIf="isSubmitted && password!=valpass">password invalid</div>
         </div>
         <button type="submit" class="btn" (click)="save()">sign up</button>
         <p class="login-link">

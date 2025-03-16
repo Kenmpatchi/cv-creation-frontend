@@ -9,8 +9,8 @@ export class Cv{
     address?:string
     profil?:string
     poste?:string
-    date_1?:String
-    date_2?:String
+    date_1?:Date
+    date_2?:Date
     description?:string
     diplome?:string
     date_dip?:number

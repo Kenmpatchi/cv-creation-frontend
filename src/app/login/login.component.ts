@@ -13,19 +13,18 @@ import { NgIf } from '@angular/common';
 })
 export class LoginComponent{
   router=inject(Router)
-  email?:string
-  pass?:string
+  email?:String
+  password?:String
   isSubmitted:boolean=false
   user:login=new login()
   constructor(private login: authService) {}
   
   save(){
     this.user.email=this.email
-    this.user.pass=this.pass
+    this.user.password=this.password
     
     this.login.check(this.user).subscribe(
     res=>{
-
       localStorage.setItem("token",res.mytoken)
       this.router.navigate(["/crud/",res.id])
     },

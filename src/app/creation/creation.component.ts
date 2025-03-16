@@ -14,8 +14,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CreationComponent {
   router=inject(Router)
-  date_1?:string
-  date_2?:string
+  date_1?:Date
+  date_2?:Date
   types:string='europeinne'
   cv:Cv=new Cv()
   bnext:boolean=false

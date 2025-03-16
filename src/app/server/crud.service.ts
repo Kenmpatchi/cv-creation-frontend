@@ -18,7 +18,7 @@ export class CrudService {
       get(id:object):Observable<any>{
         return this.http.get(this.url+'get/'+id)
       }
-      delete(id:object){
+      delete(id:object):Observable<any>{
         return this.http.delete(this.url+'delete/'+id)
       }
       update(cv:any,id:any):Observable<any>{
